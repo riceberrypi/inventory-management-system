@@ -20,7 +20,7 @@ public class ProductController {
     @Autowired
     ModelMapper modelMapper;
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable String id){
        ProductDto productDto = productService.getProductById(id);
 
@@ -29,7 +29,7 @@ public class ProductController {
         return ResponseEntity.ok(productResponse);
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping(path = "/name/{name}")
     public ResponseEntity<ProductResponse> getProductByname(@PathVariable String name){
         ProductDto productDto = productService.getProductByName(name);
 
@@ -60,7 +60,7 @@ public class ProductController {
         return ResponseEntity.ok(productResponse);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public String deleteProduct(@PathVariable String id){
         productService.deleteProduct(id);
 

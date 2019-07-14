@@ -37,7 +37,7 @@ public class SupplierController {
         return ResponseEntity.ok(supplierResponse);
     }
 
-    @PostMapping(path="/save")
+    @PostMapping("/save")
     public ResponseEntity<SupplierResponse> createSupplier(@RequestBody SupplierRequestModel supplierRequestModel){
        // ModelMapper modelMapper = new ModelMapper();
 
@@ -50,7 +50,7 @@ public class SupplierController {
         return ResponseEntity.ok(supplierResponse);
     }
 
-    @PutMapping(path="/update")
+    @PutMapping("/update")
     public ResponseEntity<SupplierResponse> updateSupplier(@RequestBody SupplierRequestModel supplierRequestModel){
         SupplierDto supplierDto = modelMapper.map(supplierRequestModel,SupplierDto.class);
 
