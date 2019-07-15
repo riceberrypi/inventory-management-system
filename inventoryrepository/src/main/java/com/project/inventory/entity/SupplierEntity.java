@@ -1,8 +1,6 @@
 package com.project.inventory.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name="tbl_suppliers")
@@ -16,6 +14,17 @@ public class SupplierEntity implements Serializable {
 
     @Column(name="supplier_name",length = 50)
     private String supplierName;
+
+    @OneToMany(mappedBy = "supplierEntity",cascade = CascadeType.ALL)
+    private ProductEntity productEntity;
+
+    public ProductEntity getProductEntity() {
+        return productEntity;
+    }
+
+    public void setProductEntity(ProductEntity productEntity) {
+        this.productEntity = productEntity;
+    }
 
     public String getSupplierId() {
         return supplierId;

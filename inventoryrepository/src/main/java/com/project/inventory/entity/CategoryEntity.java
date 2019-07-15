@@ -1,8 +1,6 @@
 package com.project.inventory.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "tbl_category")
@@ -19,6 +17,10 @@ public class CategoryEntity implements Serializable {
 
     @Column(name = "category_description",length = 50)
     private String categoryDescription;
+
+    @OneToMany(mappedBy = "categoryEntity",cascade = CascadeType.ALL)
+    private ProductEntity productEntity;
+
 
     public String getCategoryId() {
         return categoryId;

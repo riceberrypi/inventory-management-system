@@ -1,10 +1,31 @@
 package com.project.inventory.model.response;
 
+import com.project.inventory.entity.CategoryEntity;
+import com.project.inventory.entity.SupplierEntity;
+
 public class ProductResponse {
 
     private String productId;
     private String productName;
     private String productLabel;
+    private SupplierEntity supplierEntity;
+    private CategoryEntity categoryEntity;
+
+    public SupplierEntity getSupplierEntity() {
+        return supplierEntity;
+    }
+
+    public void setSupplierEntity(SupplierEntity supplierEntity) {
+        this.supplierEntity = supplierEntity;
+    }
+
+    public CategoryEntity getCategoryEntity() {
+        return categoryEntity;
+    }
+
+    public void setCategoryEntity(CategoryEntity categoryEntity) {
+        this.categoryEntity = categoryEntity;
+    }
 
     public String getProductId() {
         return productId;
