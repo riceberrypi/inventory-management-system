@@ -2,11 +2,19 @@ package com.project.inventory.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(name = "tbl_category")
 public class CategoryEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public CategoryEntity() {
+    }
+
+    public CategoryEntity(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
     @Id
     @Column(name = "category_id",length = 50)
@@ -19,8 +27,15 @@ public class CategoryEntity implements Serializable {
     private String categoryDescription;
 
     @OneToMany(mappedBy = "categoryEntity",cascade = CascadeType.ALL)
-    private ProductEntity productEntity;
+    private List<ProductEntity> productEntity;
 
+    public List<ProductEntity> getProductEntity() {
+        return productEntity;
+    }
+
+    public void setProductEntity(List<ProductEntity> productEntity) {
+        this.productEntity = productEntity;
+    }
 
     public String getCategoryId() {
         return categoryId;

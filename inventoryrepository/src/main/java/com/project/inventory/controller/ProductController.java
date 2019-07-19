@@ -1,9 +1,7 @@
 package com.project.inventory.controller;
 
 import com.project.inventory.dto.ProductDto;
-import com.project.inventory.model.request.ProductRequestModel;
 import com.project.inventory.model.response.ProductResponse;
-import com.project.inventory.model.response.SupplierResponse;
 import com.project.inventory.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,7 @@ public class ProductController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable String id){
-       ProductDto productDto = productService.getProductById(id);
+        ProductDto productDto = productService.getProductById(id);
 
        ProductResponse productResponse = modelMapper.map(productDto,ProductResponse.class);
 
@@ -39,10 +37,8 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequestModel productRequestModel){
-        ProductDto productDto = modelMapper.map(productRequestModel,ProductDto.class);
-
-        ProductDto createdProduct = productService.createProduct(productDto);
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductDto productRequestModel){
+        ProductDto createdProduct = productService.createProduct(productRequestModel);
 
         ProductResponse productResponse = modelMapper.map(createdProduct,ProductResponse.class);
 
@@ -50,7 +46,7 @@ public class ProductController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ProductResponse> updateProduct(@RequestBody ProductRequestModel productRequestModel){
+    public ResponseEntity<ProductResponse> updateProduct(@RequestBody ProductDto productRequestModel){
         ProductDto productDto = modelMapper.map(productRequestModel,ProductDto.class);
 
         ProductDto updatedProduct = productService.updateProduct(productDto);

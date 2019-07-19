@@ -1,7 +1,6 @@
 package com.project.inventory.controller;
 
 import com.project.inventory.dto.CategoryDto;
-import com.project.inventory.model.request.CategoryRequestModel;
 import com.project.inventory.model.response.CategoryResponse;
 import com.project.inventory.service.CategoryService;
 import org.modelmapper.ModelMapper;
@@ -38,7 +37,7 @@ public class CategoryController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryRequestModel categoryRequestModel){
+    public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryDto categoryRequestModel){
         CategoryDto categoryDto = modelMapper.map(categoryRequestModel,CategoryDto.class);
 
         CategoryDto createdUser = categoryService.createCategory(categoryDto);
@@ -49,10 +48,10 @@ public class CategoryController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<CategoryResponse> updateCategory(@RequestBody CategoryRequestModel categoryRequestModel){
-         CategoryDto categoryDto = modelMapper.map(categoryRequestModel,CategoryDto.class);
+    public ResponseEntity<CategoryResponse> updateCategory(@RequestBody CategoryDto categoryRequestModel){
+        CategoryDto categoryDto = modelMapper.map(categoryRequestModel,CategoryDto.class);
 
-         CategoryDto updatedCategory = categoryService.updateCategory(categoryDto);
+        CategoryDto updatedCategory = categoryService.updateCategory(categoryDto);
 
          CategoryResponse categoryResponse = modelMapper.map(updatedCategory,CategoryResponse.class);
 

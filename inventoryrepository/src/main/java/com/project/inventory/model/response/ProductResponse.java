@@ -1,30 +1,32 @@
 package com.project.inventory.model.response;
 
-import com.project.inventory.entity.CategoryEntity;
-import com.project.inventory.entity.SupplierEntity;
+import com.project.inventory.dto.CategoryDto;
+import com.project.inventory.dto.SupplierDto;
+
+import java.util.List;
 
 public class ProductResponse {
 
     private String productId;
     private String productName;
     private String productLabel;
-    private SupplierEntity supplierEntity;
-    private CategoryEntity categoryEntity;
+    private List<SupplierDto> supplierDto;
+    private List<CategoryDto> categoryDto;
 
-    public SupplierEntity getSupplierEntity() {
-        return supplierEntity;
+    public List<SupplierDto> getSupplierDto() {
+        return supplierDto;
     }
 
-    public void setSupplierEntity(SupplierEntity supplierEntity) {
-        this.supplierEntity = supplierEntity;
+    public void setSupplierDto(List<SupplierDto> supplierDto) {
+        this.supplierDto = supplierDto;
     }
 
-    public CategoryEntity getCategoryEntity() {
-        return categoryEntity;
+    public List<CategoryDto> getCategoryDto() {
+        return categoryDto;
     }
 
-    public void setCategoryEntity(CategoryEntity categoryEntity) {
-        this.categoryEntity = categoryEntity;
+    public void setCategoryDto(List<CategoryDto> categoryDto) {
+        this.categoryDto = categoryDto;
     }
 
     public String getProductId() {

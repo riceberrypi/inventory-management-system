@@ -1,32 +1,27 @@
 package com.project.inventory.dto;
 
-import com.project.inventory.entity.CategoryEntity;
-
 import java.io.Serializable;
 
 public class ProductDto implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private String productId;
     private String productName;
     private String productLabel;
-    private CategoryEntity categoryEntity;
     private SupplierDto supplierDto;
+    private CategoryDto categoryDto;
 
-    public CategoryEntity getCategoryEntity() {
-        return categoryEntity;
+    public ProductDto(){
+
     }
 
-    public void setCategoryEntity(CategoryEntity categoryEntity) {
-        this.categoryEntity = categoryEntity;
-    }
-
-    public SupplierDto getSupplierDto() {
-        return supplierDto;
-    }
-
-    public void setSupplierDto(SupplierDto supplierDto) {
+    public ProductDto(String productId, String productName, String productLabel, SupplierDto supplierDto, CategoryDto categoryDto) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productLabel = productLabel;
         this.supplierDto = supplierDto;
+        this.categoryDto = categoryDto;
     }
 
     public String getProductId() {
@@ -51,5 +46,21 @@ public class ProductDto implements Serializable {
 
     public void setProductLabel(String productLabel) {
         this.productLabel = productLabel;
+    }
+
+    public SupplierDto getSupplierDto() {
+        return supplierDto;
+    }
+
+    public void setSupplierDto(SupplierDto supplierDto) {
+        this.supplierDto = supplierDto;
+    }
+
+    public CategoryDto getCategoryDto() {
+        return categoryDto;
+    }
+
+    public void setCategoryDto(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
     }
 }

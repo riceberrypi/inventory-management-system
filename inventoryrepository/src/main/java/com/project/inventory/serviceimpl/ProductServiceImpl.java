@@ -1,15 +1,19 @@
 package com.project.inventory.serviceimpl;
 
 import com.project.inventory.dto.ProductDto;
+import com.project.inventory.entity.CategoryEntity;
 import com.project.inventory.entity.ProductEntity;
+import com.project.inventory.entity.SupplierEntity;
+import com.project.inventory.repository.CategoryRepository;
 import com.project.inventory.repository.ProductRepository;
+import com.project.inventory.repository.SupplierRepository;
 import com.project.inventory.service.ProductService;
 import com.project.inventory.utils.IdGenerator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Objects;
 
 @Service
@@ -19,11 +23,18 @@ public class ProductServiceImpl implements ProductService {
     ProductRepository productRepository;
 
     @Autowired
+    SupplierRepository supplierRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
     IdGenerator idGenerator;
 
     @Autowired
     ModelMapper modelMapper;
 
+    @Transactional(readOnly = true)
     @Override
     public ProductDto getProductById(String id) {
         ProductEntity productEntity = productRepository.findByProductId(id);
@@ -38,6 +49,7 @@ public class ProductServiceImpl implements ProductService {
         return productDto;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public ProductDto getProductByName(String name) {
         ProductEntity productEntity = productRepository.findByProductName(name);
@@ -54,11 +66,15 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     @Override
     public ProductDto createProduct(ProductDto productDto) {
-        ProductEntity productEntity = modelMapper.map(productDto,ProductEntity.class);
-        productEntity.setProductId(idGenerator.generateId());
 
         if(productRepository.findByProductName(productDto.getProductName()) != null)
             throw new RuntimeException("Product already exists!");
+
+        ProductEntity productEntity = new ProductEntity(productDto);
+        productEntity.setProductId(idGenerator.generateId());
+
+        productEntity.setCategoryEntity(new CategoryEntity(productDto.getCategoryDto().getCategoryId()));
+        productEntity.setSupplierEntity(new SupplierEntity(productDto.getSupplierDto().getSupplierId()));
 
         ProductEntity storedProductDetails = productRepository.save(productEntity);
 

@@ -1,12 +1,22 @@
 package com.project.inventory.entity;
 
+import com.project.inventory.dto.ProductDto;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity(name = "tbl_products")
 public class ProductEntity implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    public ProductEntity() {
+    }
+
+    public ProductEntity(ProductDto productDto) {
+        this.productId = productDto.getProductId();
+        this.productName = productDto.getProductName();
+        this.productLabel = productDto.getProductLabel();
+    }
 
     @Id
     @Column(name="product_id",length = 50)
@@ -20,25 +30,25 @@ public class ProductEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="tbl_category_category_id")
-    private List<CategoryEntity> categoryEntity;
+    private CategoryEntity categoryEntity;
 
     @ManyToOne
     @JoinColumn(name="tbl_supplier_supplier_id")
-    private List<SupplierEntity> supplierEntity;
+    private SupplierEntity supplierEntity;
 
-    public List<CategoryEntity> getCategoryEntity() {
+    public CategoryEntity getCategoryEntity() {
         return categoryEntity;
     }
 
-    public void setCategoryEntity(List<CategoryEntity> categoryEntity) {
+    public void setCategoryEntity(CategoryEntity categoryEntity) {
         this.categoryEntity = categoryEntity;
     }
 
-    public List<SupplierEntity> getSupplierEntity() {
+    public SupplierEntity getSupplierEntity() {
         return supplierEntity;
     }
 
-    public void setSupplierEntity(List<SupplierEntity> supplierEntity) {
+    public void setSupplierEntity(SupplierEntity supplierEntity) {
         this.supplierEntity = supplierEntity;
     }
 

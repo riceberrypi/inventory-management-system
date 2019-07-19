@@ -1,7 +1,6 @@
 package com.project.inventory.controller;
 
 import com.project.inventory.dto.SupplierDto;
-import com.project.inventory.model.request.SupplierRequestModel;
 import com.project.inventory.model.response.SupplierResponse;
 import com.project.inventory.service.SupplierService;
 import org.modelmapper.ModelMapper;
@@ -38,7 +37,7 @@ public class SupplierController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<SupplierResponse> createSupplier(@RequestBody SupplierRequestModel supplierRequestModel){
+    public ResponseEntity<SupplierResponse> createSupplier(@RequestBody SupplierDto supplierRequestModel){
        // ModelMapper modelMapper = new ModelMapper();
 
         SupplierDto supplierDto = modelMapper.map(supplierRequestModel,SupplierDto.class);
@@ -51,7 +50,7 @@ public class SupplierController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<SupplierResponse> updateSupplier(@RequestBody SupplierRequestModel supplierRequestModel){
+    public ResponseEntity<SupplierResponse> updateSupplier(@RequestBody SupplierDto supplierRequestModel){
         SupplierDto supplierDto = modelMapper.map(supplierRequestModel,SupplierDto.class);
 
         SupplierDto updateUser = supplierService.updateUser(supplierDto);
