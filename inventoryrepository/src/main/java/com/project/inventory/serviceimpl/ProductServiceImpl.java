@@ -45,7 +45,6 @@ public class ProductServiceImpl implements ProductService {
         else
             throw new RuntimeException("Product not found!");
 
-
         return productDto;
     }
 
@@ -66,10 +65,6 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     @Override
     public ProductDto createProduct(ProductDto productDto) {
-
-        if(productRepository.findByProductName(productDto.getProductName()) != null)
-            throw new RuntimeException("Product already exists!");
-
         ProductEntity productEntity = new ProductEntity(productDto);
         productEntity.setProductId(idGenerator.generateId());
 

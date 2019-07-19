@@ -37,8 +37,8 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductDto productRequestModel){
-        ProductDto createdProduct = productService.createProduct(productRequestModel);
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductDto productDto){
+        ProductDto createdProduct = productService.createProduct(productDto);
 
         ProductResponse productResponse = modelMapper.map(createdProduct,ProductResponse.class);
 
