@@ -1,6 +1,9 @@
 package com.project.inventory.service;
 
 import com.project.inventory.dto.CategoryDto;
+import com.project.inventory.entity.CategoryEntity;
+
+import java.util.List;
 
 public interface CategoryService {
 
@@ -9,4 +12,5 @@ public interface CategoryService {
     CategoryDto getCategoryById(String id);
     CategoryDto getCategoryByName(String name);
     void deleteCategory(String id);
+    List<CategoryEntity> findAll();
 }

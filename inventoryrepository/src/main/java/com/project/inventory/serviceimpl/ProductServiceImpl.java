@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @Service
@@ -21,12 +22,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
-
-    @Autowired
-    SupplierRepository supplierRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
 
     @Autowired
     IdGenerator idGenerator;
@@ -43,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
         if(Objects.nonNull(productEntity))
             productDto = modelMapper.map(productEntity, ProductDto.class);
         else
-            throw new RuntimeException("Product not found!");
+            throw new NoSuchElementException("Product not found!");
 
         return productDto;
     }
@@ -57,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
         if(Objects.nonNull(productEntity))
              productDto = modelMapper.map(productEntity,ProductDto.class);
         else
-            throw new RuntimeException("Product not found!");
+            throw new NoSuchElementException("Product not found!");
 
         return productDto;
     }
@@ -92,7 +87,7 @@ public class ProductServiceImpl implements ProductService {
 
             returnProductDto = modelMapper.map(storedProductDetails,ProductDto.class);
         }else{
-            throw new RuntimeException("Product not found!");
+            throw new NoSuchElementException("Product not found!");
         }
 
         return returnProductDto;
@@ -105,6 +100,6 @@ public class ProductServiceImpl implements ProductService {
         if(Objects.nonNull(productEntity))
             productRepository.delete(productEntity);
         else
-            throw new RuntimeException("Product not found!");
+            throw new NoSuchElementException("Product not found!");
     }
 }

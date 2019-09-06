@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/suppliers")
+@RequestMapping("api/inventory/suppliers")
 public class SupplierController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class SupplierController {
         return ResponseEntity.ok(supplierResponse);
     }
 
-    @GetMapping(path="/name/{name}")
+    @GetMapping(path="/{name}")
     public ResponseEntity<SupplierResponse> getSupplierByName(@PathVariable String name){
         SupplierDto supplierDto = supplierService.getSupplierBySupplierName(name);
 
@@ -60,7 +60,7 @@ public class SupplierController {
         return ResponseEntity.ok(supplierResponse);
     }
 
-    @DeleteMapping(path="/delete/{id}")
+    @DeleteMapping(path="/{id}")
     public String deleteSupplier(@PathVariable String id){
         supplierService.deleteSupplier(id);
 

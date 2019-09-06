@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/products")
+@RequestMapping("api/inventory/products")
 public class ProductController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class ProductController {
         return ResponseEntity.ok(productResponse);
     }
 
-    @GetMapping(path = "/name/{name}")
+    @GetMapping(path = "/{name}")
     public ResponseEntity<ProductResponse> getProductByname(@PathVariable String name){
         ProductDto productDto = productService.getProductByName(name);
 
@@ -56,7 +56,7 @@ public class ProductController {
         return ResponseEntity.ok(productResponse);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/{id}")
     public String deleteProduct(@PathVariable String id){
         productService.deleteProduct(id);
 

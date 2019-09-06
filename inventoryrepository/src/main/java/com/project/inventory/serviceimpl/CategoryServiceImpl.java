@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -97,4 +98,11 @@ public class CategoryServiceImpl implements CategoryService {
         else
             throw new RuntimeException("Record does not exist!");
     }
+
+    @Override
+    public List<CategoryEntity> findAll() {
+        return null;
+    }
+
+
 }

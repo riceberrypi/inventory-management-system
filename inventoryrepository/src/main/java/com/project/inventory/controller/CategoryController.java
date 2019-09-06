@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/category")
+@RequestMapping("api/inventory/categories")
 public class CategoryController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryResponse);
     }
 
-    @GetMapping(path = "/name/{name}")
+    @GetMapping(path = "/{name}")
     public ResponseEntity<CategoryResponse> getCategoryByName(@PathVariable String name){
         CategoryDto categoryDto = categoryService.getCategoryByName(name);
 
@@ -58,7 +58,7 @@ public class CategoryController {
          return ResponseEntity.ok(categoryResponse);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/{id}")
     public String deleteCategory(@PathVariable String id){
         categoryService.deleteCategory(id);
 
